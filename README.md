@@ -22,23 +22,30 @@ git merge <branch name>
 > Make example of pull request and two branch merge event.
 
 ```sh
-# create branch feature
+# clone remote repo and create branch feature
+git clone
 git branch feature
 
-# work on login feature and commit
+# work on login component of feature branch and commit it
 touch login.html
 git add login.html
 git commit -m "login feature is done"
 
-#push the feature branch to remote
+# push the feature branch to remote
 git push origin feature
 ```
 
+- snap of generated pull request 
+
 ![pull_request](./snaps/pull%20request.png)
+
+- snap of merge request that show owners' account
 
 ![merge_request](./snaps/merge-request.png)
 
-![merge_request](./snaps/merge-done.png)
+- snap of pull request merged
+
+![merge_request_done](./snaps/merge-done.png)
 
 
 # 2. Rebase
@@ -64,31 +71,31 @@ git pull origin master
 # checkout feature branch
 git checkout feature
 
-#make commit
+# make commit
 touch signup.html
 git add signup.html
 git commit -m "signup feature implemented"
 
-#checkout master and rebase 
+# checkout master and rebase 
 git switch master
 git rebase feature
 ```
+
+- you can see the logs of master branch that after rebase, the logs is changed.
 
 ![Rebase](./snaps/rebase-cli.png)
 
 # 3. Change commit message
 
-- To change Commit Message we can perform Interactive Rebasing. We can use option reword for particular commit Id to change its Message. We use `git rebase -i` command for Interactive Rebasing. Changing Commit Message is one of the Operations that will rewrite the Commit History. So, after changing Commit Message, we'll be required to Push our Changes forcefully if the commits we edited were already on Remote Repository. Also, the commits we edit are already cloned by other team members then, Rewriting the Commit history will require for them to Pull new changes before they push their changes on Remote Repository. This way we can change any Commit's Message.
-
-- To change last Commit's Message we can use --amend option in git commit and provide a new message with `-m` option. Amend operation is used to append changes to last Commit instead of creating a new commit.
+- To change last Commit's Message we can use `--amend` option in git commit and provide a new message with `-m` option. Amend operation is used to append changes to last Commit instead of creating a new commit.
 
 > Commit push on commit in feature branch and then change commit message
 
 ```sh
-#commit on master branch
+# commit on master branch
 git commit -m "master.html is created"
 
-#commit massage is changed you can see following snap. 
+# commit massage is changed you can see following snap. 
 ```
 
 ![Rebase](./snaps/change_commit.png)
@@ -100,15 +107,15 @@ git commit -m "master.html is created"
 > Pick some commits from feature branch to master branch
 
 ```sh
-#checkout feature branch 
+# checkout feature branch 
 git checkout branch
 
-#fix some bug in feature branch
+# fix some bug in feature branch
 touch bugfix.txt
 git add bugfix.txt
 git commit -m "bug is fixed"
 
-#now you can see the snap where cherry-pick is perform
+# now you can see the snap where cherry-pick is perform
 ```
 
 ![cherry-pick](./snaps/cherry-pick.png)
@@ -116,14 +123,15 @@ git commit -m "bug is fixed"
 
 # 5. Drop commit
 
-- To Drop a Commit, we can use reset. We can use `git reset --hard HEAD~`. there are other option in reset like `--soft` and `--mixed` 
+- To Drop a Commit, we can use reset. We can use `git reset --hard HEAD~<number>`. Here `<number>` define how many commit are you want to reset from HEAD
+- there are other option in reset like `--soft` and `--mixed` 
 
 > Remove some commit from feature branch.
 
 ```sh
-#make some commit to master branch (see the logs of master branch in snap)
+# make some commit to master branch (see the logs of master branch in snap)
 
-#drop some commit
+# drop some commit
 git reset --hard HEAD~3
 ```
 
